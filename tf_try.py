@@ -31,5 +31,35 @@ model = get_compiled_model()
 model.fit(x_train, y_train, batch_size=32, epochs=5, validation_data=(x_val, y_val))
 
 
-tf.data.Dataset.from
+
+tf.Variable
+
+tf.keras.optimizers.Adam._decayed_lr()
+tf.keras.callbacks.EarlyStopping
+
+
+class LearningRateMonitor(tf.keras.callbacks.Callback):
+    def on_train_begin(self, logs=None):
+        keys = list(logs.keys())
+        print("Starting training; got log keys: {}".format(keys))
+
+    def on_epoch_begin(self, epoch, logs=None):
+        keys = list(logs.keys())
+        print("End epoch {} of training; got log keys: {}, model:{}".format(
+            epoch, keys, tf.keras.backend.get_value(self.model.optimizer.learning_rate)))
+
+    def on_train_batch_begin(self, batch, logs=None):
+        print("...Training: start of batch {}; got learning rate: {}".format(
+            batch, tf.keras.backend.get_value(self.model.optimizer.learning_rate)))
+
+
+
+
+
+
+
+
+
+
+
 
